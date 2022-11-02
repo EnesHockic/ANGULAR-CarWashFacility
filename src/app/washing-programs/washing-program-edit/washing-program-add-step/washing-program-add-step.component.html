@@ -1,0 +1,81 @@
+<div class="list-group-item">
+  <form [formGroup]="pickStepForm" (ngSubmit)="onPickSubmit()">
+    <p>Pick existing step</p>
+    <div class="row">
+      <div class="col-md-2">
+        <label for="stepName">Washing Program</label>
+      </div>
+      <div class="col-md-4">
+        <select
+          formControlName="washingPogramId"
+          id="washing-programs"
+          (change)="onProgramSelected($event.target.value)"
+          class="form-control"
+        >
+          <option value=""></option>
+          <option
+            *ngFor="let program of washingPrograms;"
+            [value]="program.id"
+          >
+            {{ program.name }}
+          </option>
+          <option value="0" *ngIf="washingPrograms">(unassigned)</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="stepName">Step</label>
+      </div>
+      <div class="col-md-4">
+        <select formControlName="stepId" id="step-selection" class="form-control">
+          <option *ngFor="let step of selectedProgramSteps" [value]="step.id">
+            {{ step.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-md-2">
+        <label for="order">Num of Order</label>
+      </div>
+      <div class="col-md-3">
+        <input formControlName="numOfOrder" class="form-control" type="number" id="order" />
+      </div>
+      <div class="col-md-3 pull-right">
+        <button type="submit" class="btn btn-primary" [disabled]="!pickStepForm.valid">
+          Pick
+        </button>
+      </div>
+    </div>
+  </form>
+  <hr />
+  <form [formGroup]="newStepForm" (ngSubmit)="onNewSubmit()">
+    <h4>Add new step</h4>
+    <div class="row">
+      <div class="col-md-1">
+        <label for="stepName">Name</label>
+      </div>
+      <div class="col-md-5">
+        <input
+          type="text"
+          class="form-control"
+          id="stepName"
+          formControlName="stepName"
+        />
+      </div>
+      <div class="col-md-1">
+        <label for="numOfOrderN">Num of Order</label>
+      </div>
+      <div class="col-md-2">
+        <input
+          type="number"
+          class="form-control"
+          id="numOfOrderN"
+          formControlName="numOfOrder"
+        />
+      </div>
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </form>
+</div>

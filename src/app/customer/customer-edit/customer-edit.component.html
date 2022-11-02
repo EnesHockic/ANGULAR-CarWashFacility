@@ -1,0 +1,52 @@
+<h2>Edit Customer</h2>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" *ngIf="customerForm">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group"></div>
+                        <label for="name">First Name</label>
+                        <input type="text" class="form-control" id="firstName" formControlName="firstName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group"></div>
+                        <label for="name">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group"></div>
+                        <label for="name">Phone</label>
+                        <input type="text" class="form-control" id="phone" formControlName="phone">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group"></div>
+                        <label for="name">Car</label>
+                        <input type="text" class="form-control" id="car" formControlName="car">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-2 text-left">
+
+                    <button type="submit" 
+                    class="btn btn-primary" [disabled]="!customerForm.valid && customerForm.touched">
+                        {{editMode ? "Update" : "Add"}}
+                    </button>
+                </div>
+                <div class="col text-right">
+                    <button type="button" 
+                    class="btn btn-danger float-right" 
+                    [disabled]="!customerForm.valid"
+                    *ngIf="editMode">Deactivate</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

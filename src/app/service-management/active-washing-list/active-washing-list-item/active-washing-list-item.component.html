@@ -1,0 +1,42 @@
+<div class="activity-box">
+    <label>{{washingActivity.customer.firstName}} {{washingActivity.customer.lastName}}</label>
+    <br>
+    <label>{{washingActivity.program.name}}</label>
+    <div class="row clearfix">
+        <div class="col-xs-6">
+            Base price
+        </div>
+        <div class="col-xs-3 pull-right">
+            {{washingActivity.program.price}} $
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-xs-6">
+            Discount
+        </div>
+        <div class="col-xs-3 pull-right">
+            {{washingActivity.discountFormatted}} $
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-xs-6">
+            Total
+        </div>
+        <div class="col-xs-3 pull-right">
+            {{washingActivity.totalPrice}} $
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <button class="btn btn-success" (click)="onDoneActivity()">
+                Done
+            </button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger" (click)="onTerminate()">
+                Terminate
+            </button>
+        </div>
+    </div>
+</div>

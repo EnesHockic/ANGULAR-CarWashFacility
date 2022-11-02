@@ -1,0 +1,11 @@
+<h1>Customers</h1>
+<button class="btn btn-success" type="button" (click)="onNewCustomer()">New Customer</button>
+<hr>
+<div class="row" >
+    <div class="col-md-5" >
+        <app-customer-list></app-customer-list>
+    </div>
+    <div class="col-md-7">
+        <router-outlet></router-outlet>
+    </div>
+</div>

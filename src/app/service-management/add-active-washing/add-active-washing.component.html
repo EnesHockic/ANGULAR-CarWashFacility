@@ -1,0 +1,104 @@
+<div class="row" style="height: 250px;">
+    <form (ngSubmit)="onPrepareSubmit(f)" #f="ngForm">
+
+    <div class="col-md-3">
+        <div class="info-box">
+        <div class="row">
+            <label for="">Pick Customer</label>
+        </div>
+        <div class="row">
+            <select class="form-control" id="customerId" name="customerId" ngModel required
+                (change)="onCustomerSelected($event)">
+                <option *ngFor="let customer of customers" 
+                         [value]="customer.id">{{customer.firstName}} {{customer.lastName}}</option>
+            </select>
+        </div>
+        <div class="row" *ngIf="selectedCustomer">
+            <div class="col-xs-4">
+            Car    
+        </div>
+        <div class="col-xs-8">
+            {{selectedCustomer.car}} 
+        </div>
+        </div>
+        <div class="row" *ngIf="selectedCustomer">
+            <div class="col-xs-4">
+                Phone    
+            </div>
+            <div class="col-xs-8">
+                {{selectedCustomer.phone}} 
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-3">
+        <div class="info-box">
+                <div class="row">
+                <label for="">Pick Washing Program</label>
+            </div>
+            <div class="row">
+                <select class="form-control" id="washingProgramId" name="washingProgramId" ngModel required
+                        (change)="onWashingProgramSelected($event)">
+                    <option *ngFor="let program of washingPrograms" 
+                    [value]="program.id">{{program.name}}</option>
+                </select>
+            </div>
+            <div class="row" *ngIf="selectedWashingProgram">
+                {{selectedWashingProgram.description}}
+            </div>
+            <div class="row">
+                Steps:
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success" type="submit" [disabled]="!f.valid">Prepare Washing Activity</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div class="col-md-3" *ngIf="preparedWashing">
+        <!-- *ngIf="preparedWashing" -->
+        <div class="row">
+            <h3>Overview</h3>
+        </div>
+        <div class="row" style="text-align: center;">
+            <label>{{preparedWashing.customer.firstName}} {{preparedWashing.customer.lastName}}</label>
+        </div>
+        <div class="row" style="text-align: center;">
+            <label>{{preparedWashing.program.name}}</label>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-6">
+                Base price
+            </div>
+            <div class="col-xs-3 pull-right">
+                {{preparedWashing.program.price}} $
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-6">
+                Discount
+            </div>
+            <div class="col-xs-3 pull-right">
+                {{preparedWashing.discountFormatted}} %
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-6">
+                Total
+            </div>
+            <div class="col-xs-3 pull-right">
+                {{preparedWashing.totalPrice}} $
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-8">
+                <button class="btn btn-primary" (click)="onCreateWashingActivity()">Create Washing Activity</button>
+            </div>
+            <div class="col-xs-4">
+                <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
